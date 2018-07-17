@@ -17,21 +17,20 @@ export class OutputComponent implements OnInit, AfterViewInit {
 
     ngOnInit() {
         this.form = this.squareService.getForm();
-        console.log(this.form);
-        console.log("output init");
     }
 
     ngAfterViewInit(): void {
         this.context = (<HTMLCanvasElement>this.myCanvas.nativeElement).getContext('2d');
-        for (let square of this.form.get('myQuads.square')) {
-            let A = this.form.get('myQuads[square].A');
-            console.log(A);
-            // let B = this.squareService.squareForm.get('myQuads[square].B').value;
-            // let C = this.squareService.squareForm.get('myQuads[square].C').value;
-            // let D = this.squareService.squareForm.get('myQuads[square].D').value;
-            // this.drawQuad(A, A, A, A);
+        console.log("Afterview init");
+        console.log(this.form);
+        for (let square of this.form.value.myQuads) {
+            let A = square.A;
+            let B = square.B;
+            let C = square.C;
+            let D = square.D;
+            this.drawQuad(A, B, C, D);
         }
-        // this.drawQuad(200, 200,200, 200); //hard coded
+
 
     }
 
@@ -45,15 +44,17 @@ export class OutputComponent implements OnInit, AfterViewInit {
         this.context.strokeStyle = '#666666';
         this.context.stroke();
 
-        if (A == C) {
-            if (A == B && B == C) {
-                this.context.fillStyle = "purple";
-                this.context.fill();
-            } else {
-                this.context.fillStyle = "red";
-                this.context.fill();
-            }
+        this.context.font = "100% Arial";
+        if (C == D) {
+            this.context.fillStyle = "purple";
+            this.context.fill();
+            this.context.fillStyle = "white";
+            this.context.fillText(4 * C, A + (D / 2), B + (B / 2));
+        } else {
+            this.context.fillStyle = "red";
+            this.context.fill();
+            this.context.fillStyle = "black";
+            this.context.fillText(C * D, A + (D / 2), B + (B / 2));
         }
-
     }
 }

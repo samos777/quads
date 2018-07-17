@@ -10,10 +10,10 @@ import {Router} from '@angular/router';
 })
 export class InputComponent implements OnInit {
     makeQuadForm: FormGroup;
-    pressed: boolean = false;
+    isEmpty: boolean = true;
 
 
-    constructor(private formBuilder: FormBuilder, private squareService: SquareService,
+    constructor(private squareService: SquareService,
                 private route: Router) {
     }
 
@@ -34,6 +34,7 @@ export class InputComponent implements OnInit {
             'D': new FormControl(null, [Validators.required, Validators.min(1), Validators.max(800)]),
         }, [Validators.required]);
         (<FormArray>this.makeQuadForm.get('myQuads')).push(control);
+        this.isEmpty = false;
     }
 
     onSubmit() {

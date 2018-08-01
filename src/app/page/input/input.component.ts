@@ -18,7 +18,7 @@ export class InputComponent implements OnInit {
     }
 
 
-    ngOnInit() {
+    ngOnInit(): void {
 
         this.makeQuadForm = new FormGroup({
             'myQuads': new FormArray([]),
@@ -26,7 +26,7 @@ export class InputComponent implements OnInit {
     }
 
 
-    onAddQuad() {
+    onAddQuad(): void {
         const control = new FormGroup({
             'A': new FormControl(null, [Validators.required, Validators.min(1), Validators.max(800)]),
             'B': new FormControl(null, [Validators.required, Validators.min(1), Validators.max(800)]),
@@ -37,7 +37,7 @@ export class InputComponent implements OnInit {
         this.isEmpty = false;
     }
 
-    onSubmit() {
+    onSubmit(): void {
         this.squareService.setForm(this.makeQuadForm);
         this.route.navigate(['/output'])
 

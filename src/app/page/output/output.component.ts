@@ -15,7 +15,7 @@ export class OutputComponent implements OnInit, AfterViewInit {
     constructor(private squareService: SquareService) {
     }
 
-    ngOnInit() {
+    ngOnInit(): void {
         this.form = this.squareService.getForm();
     }
 
@@ -34,10 +34,16 @@ export class OutputComponent implements OnInit, AfterViewInit {
 
     }
 
-    drawQuad(A, B, C, D) {
+    drawQuad(A, B, C, D): void {
+        let startPoint = 0;
 
         this.context.beginPath();
-        this.context.rect(A, B, C, D);
+        this.context.moveTo(startPoint, startPoint);
+        this.context.lineTo((startPoint + A), startPoint);
+        this.context.lineTo((startPoint + A), (startPoint + B));
+        this.context.lineTo((startPoint + A - C), (startPoint + B));
+        this.context.lineTo((startPoint + A - C), (startPoint + B - D));
+
         this.context.closePath();
 
         this.context.lineWidth = 1;
@@ -45,16 +51,20 @@ export class OutputComponent implements OnInit, AfterViewInit {
         this.context.stroke();
 
         this.context.font = "100% Arial";
-        if (C == D) {
-            this.context.fillStyle = "purple";
-            this.context.fill();
-            this.context.fillStyle = "white";
-            this.context.fillText(4 * C, A + (D / 2), B + (B / 2));
-        } else {
-            this.context.fillStyle = "red";
-            this.context.fill();
-            this.context.fillStyle = "black";
-            this.context.fillText(C * D, A + (D / 2), B + (B / 2));
+        if (A == C && B == D) {
+            if (B == C && A == D) {
+                let hekef = 4 * C;
+                this.context.fillStyle = "rgba(128,0,128,0.3) ";
+                this.context.fill();
+                this.context.fillStyle = "black";
+                this.context.fillText(hekef.toString(), startPoint + (A / 2), startPoint + (A / 2));
+            } else {
+                let shetah = C * D;
+                this.context.fillStyle = "rgba(255,0,0,0.3)";
+                this.context.fill();
+                this.context.fillStyle = "black";
+                this.context.fillText(shetah.toString(), startPoint + (A / 2), startPoint + (B / 2));
+            }
         }
     }
 }

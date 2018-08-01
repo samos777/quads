@@ -5,6 +5,8 @@
                   (ngSubmit)="onSubmit()">
                 <div formArrayName="myQuads">
                     <h4>My Quads</h4>
+                    <p>Press the button to build one quad (or more).</p>
+                    <p>Every entry is the lenght of the sides of the quad (1-800).</p>
                     <button
                             class="btn btn-default"
                             type="button"
@@ -16,7 +18,7 @@
                             *ngFor="let quadControl of makeQuadForm.get('myQuads').controls; let i = index">
                         <div [formGroupName]="i" class="form-control">
                             <div class="form-group">
-                                <label for="A">X</label>
+                                <label for="A">A</label>
                                 <input
                                         type="number"
                                         id="A"
@@ -25,7 +27,7 @@
                             </div>
 
                             <div class="form-group">
-                                <label for="B">Y</label>
+                                <label for="B">B</label>
                                 <input
                                         type="number"
                                         id="B"
@@ -34,7 +36,7 @@
                                 >
                             </div>
                             <div class="form-group">
-                                <label for="C">Width</label>
+                                <label for="C">C</label>
                                 <input
                                         type="number"
                                         id="C"
@@ -43,7 +45,7 @@
                                 >
                             </div>
                             <div class="form-group">
-                                <label for="D">Height</label>
+                                <label for="D">D</label>
                                 <input
                                         type="number"
                                         id="D"

@@ -1,6 +1,11 @@
-# FinalTest
+# Quads
 
 This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 6.0.8.
+
+## Instructions
+In the input page insert the length of the for sides of the quad(s) we want to display.
+If a square is shown, the area of the square will be painted purple and within the square the circumference of the square should be printed.
+If a rectangle is displayed, the rectangle will be painted red and within it the surface of the rectangle should be printed.
 
 ## Development server
 
